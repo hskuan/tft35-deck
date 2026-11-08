@@ -1,0 +1,16 @@
+{
+  // Open this file (File > Open Workspace from File...) instead of the folder:
+  // each PlatformIO project then gets its own IntelliSense config
+  // (<project>/.vscode/c_cpp_properties.json, regenerate with `pio project init --ide vscode`).
+  "folders": [
+    { "name": "BTT_TFT_Touch (STM32 TFT)", "path": "BTT_TFT_Touch" },
+    { "name": "esp32-usb-bridge (bridge + OpenDeck plugin)", "path": "esp32-usb-bridge" },
+    { "name": "repo root (docs)", "path": "." }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.pio": true,
+      "**/node_modules": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "opendeck-tft35deck",
+  "version": "0.1.0",
+  "description": "OpenDeck device plugin for the TFT35 Deck USB bridge",
+  "private": true,
+  "main": "plugin.cjs",
+  "scripts": {
+    "deploy": "node deploy.cjs",
+    "test": "node test/self-test.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "jpeg-js": "^0.4.4",
+    "serialport": "^12.0.0",
+    "ws": "^8.18.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "Name": "TFT35 Deck",
+  "Description": "Device plugin for the TFT35 Deck: a BTT TFT35 touch screen behind an ESP32-S3 / Pico USB bridge",
+  "Author": "TFT35 Deck",
+  "Version": "0.1.0",
+  "CodePath": "plugin.cjs",
+  "Icon": "icons/plugin",
+  "Category": "Hardware",
+  "OS": [
+    { "Platform": "windows", "MinimumVersion": "10" },
+    { "Platform": "linux" },
+    { "Platform": "mac", "MinimumVersion": "11" }
+  ],
+  "Actions": [],
+  "DeviceNamespace": "td"
+}

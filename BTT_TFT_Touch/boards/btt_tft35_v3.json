@@ -1,0 +1,38 @@
+{
+  "build": {
+    "core": "stm32",
+    "cpu": "cortex-m3",
+    "extra_flags": "-DSTM32F207xx",
+    "f_cpu": "120000000L",
+    "mcu": "stm32f207vct6",
+    "product_line": "STM32F207xx",
+    "variant": "NUCLEO_F207ZG"
+  },
+  "debug": {
+    "default_tools": [
+      "stlink"
+    ],
+    "jlink_device": "STM32F207VC",
+    "openocd_target": "stm32f2x",
+    "svd_path": "STM32F20x.svd"
+  },
+  "frameworks": [
+    "arduino",
+    "cmsis",
+    "stm32cube"
+  ],
+  "name": "BIGTREETECH TFT35 V3.0 (STM32F207VCT6, 0x8000 bootloader)",
+  "upload": {
+    "maximum_ram_size": 98304,
+    "maximum_size": 229376,
+    "protocol": "stlink",
+    "protocols": [
+      "stlink",
+      "jlink",
+      "cmsis-dap",
+      "blackmagic"
+    ]
+  },
+  "url": "https://github.com/bigtreetech/BIGTREETECH-TouchScreenFirmware",
+  "vendor": "BIGTREETECH"
+}
