@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "OpenDeck device plugin for the TFT35 Deck USB bridge",
   "private": true,
+  "license": "MIT",
   "main": "plugin.cjs",
   "scripts": {
     "deploy": "node deploy.cjs",

@@ -23,17 +23,21 @@ Both boards have one USB port, and it is the deck: keyboard + media keys +
 the serial port for the host app. The debug log therefore goes out on a
 second UART, for an optional USB-serial adapter (115200 baud).
 
-Wire the TFT35's 5-pin "RS232" header (3.3 V TTL despite the label; check
-with a meter first) to the board:
+Data goes over the TFT35's ESP-8266 socket (USART1), power over its 5-pin
+"RS232" header. **BTT's pin diagram draws the socket upside down**; the
+correct layout is in the [top-level README](../README.md#1-wire-the-bridge-to-the-tft)
+and [docs/HARDWARE.md](../docs/HARDWARE.md).
 
-| TFT35 header | ESP32-S3 SuperMini | Pico W |
+| TFT35 | ESP32-S3 SuperMini | Pico W |
 |---|---|---|
-| TX (PA2) | GPIO4 (RX) | GP1 (RX), pin 2 |
-| RX (PA3) | GPIO5 (TX) | GP0 (TX), pin 1 |
-| GND | GND | GND, pin 3 |
-| 5V | 5V | VBUS, pin 40 |
-| RST | not connected | not connected |
+| ESP socket TX (PA9) | GPIO4 (RX) | GP1 (RX), pin 2 |
+| ESP socket RX (PA10) | GPIO5 (TX) | GP0 (TX), pin 1 |
+| RS232 header GND | GND | GND, pin 3 |
+| RS232 header 5V | 5V | VBUS, pin 40 |
 | *debug log TX* | TX (GPIO43) | GP4, pin 6 |
+
+(The TFT firmware can use the RS232 header's TX/RX instead, with
+`BRIDGE_USART 2` in `BTT_TFT_Touch/src/config.h`, up to 3.75 Mbaud.)
 
 Pins, baud rates and USB names are in `src/config.h`; the board-specific code
 is `src/board_esp32.cpp` and `src/board_pico.cpp`, behind `src/board.h`.
