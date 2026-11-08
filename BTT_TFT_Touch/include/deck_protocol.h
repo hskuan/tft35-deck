@@ -61,6 +61,7 @@ enum {
   DECK_CMD_CLEAR_KEYS = 0x84,  // (empty) blank all host keys
   DECK_CMD_KEY_IMAGE  = 0x85,  // u8 key, u16 offset (pixels), rgb565 pixels[] (LE)
   DECK_CMD_KEY_IMAGE_RLE = 0x86,  // u8 key, u16 offset (pixels), runs[]: u8 count (1-255), u16 rgb565 (LE)
+  DECK_CMD_SOUND      = 0x87,  // u8 level: 0 = key beep off, non-zero = on (reserved for volume)
 };
 
 // Host key images are DECK_KEY_IMG x DECK_KEY_IMG RGB565 pixels, row-major,

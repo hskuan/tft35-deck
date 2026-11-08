@@ -11,6 +11,19 @@
     { "Platform": "linux" },
     { "Platform": "mac", "MinimumVersion": "11" }
   ],
-  "Actions": [],
+  "Actions": [
+    {
+      "UUID": "com.tft35deck.bridge.beep",
+      "Name": "Deck beep",
+      "Tooltip": "Turn the TFT35 Deck's key-press beep on or off",
+      "Icon": "icons/beep-on",
+      "Controllers": ["Keypad"],
+      "DisableAutomaticStates": true,
+      "States": [
+        { "Image": "icons/beep-on", "Name": "Beep on" },
+        { "Image": "icons/beep-off", "Name": "Silent" }
+      ]
+    }
+  ],
   "DeviceNamespace": "td"
 }

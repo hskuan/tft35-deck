@@ -127,6 +127,9 @@ its keys and dial as you would for a Stream Deck. The TFT's status bar shows
 "Host app" while OpenDeck is connected. OpenDeck has no folders; use profiles
 and the Starter Pack's "Switch Profile" action instead.
 
+The plugin adds one action of its own, **Deck beep**, a toggle key that turns
+the TFT's key-press beep on or off. OpenDeck saves the setting.
+
 The plugin finds the bridge automatically by its USB ID. Options and the log
 location are in the
 [plugin README](esp32-usb-bridge/opendeck-plugin/README.md).

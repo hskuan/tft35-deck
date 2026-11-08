@@ -13,6 +13,7 @@ void setBacklight(uint8_t percent);
 // Link events (deck_link.cpp)
 void onLinkStatus(bool online, uint8_t flags);
 void onBrightness(uint8_t percent);
+void onSound(uint8_t level);  // 0 = key beep off, else on
 void onSetKey(uint8_t key, uint16_t bg, uint16_t fg, const char *label, uint16_t len);
 void onClearKeys();
 void onKeyImage(uint8_t key, uint16_t offset, const uint8_t *pixels, uint16_t count);

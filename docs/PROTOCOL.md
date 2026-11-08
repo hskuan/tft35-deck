@@ -51,6 +51,7 @@ Page values: 0 Main, 1 Media, 2 Settings, 0xFF host mode.
 | 0x84 | `CMD_CLEAR_KEYS` | — blank all host keys |
 | 0x85 | `CMD_KEY_IMAGE` | u8 key, u16 offset (pixels), RGB565 pixels[] |
 | 0x86 | `CMD_KEY_IMAGE_RLE` | u8 key, u16 offset, runs[]: u8 count (1–255), u16 colour |
+| 0x87 | `CMD_SOUND` | u8 level: 0 = key beep off, non-zero = on (values reserved for a future volume). The plugin sends it on every attach (from its global settings) and when its "Deck beep" action is pressed; the TFT shows a toast only when the setting changes |
 
 ## Key images
 

@@ -26,6 +26,7 @@ const T = {
   CMD_CLEAR_KEYS: 0x84,
   CMD_KEY_IMAGE: 0x85,
   CMD_KEY_IMAGE_RLE: 0x86,
+  CMD_SOUND: 0x87,
 };
 
 const KEY = { RELEASED: 0, PRESSED: 1, CANCELLED: 2 };

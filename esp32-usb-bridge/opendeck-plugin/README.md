@@ -12,6 +12,9 @@ OpenDeck ⇄ WebSocket ⇄ plugin.cjs ⇄ USB serial ⇄ bridge (ESP32-S3 / Pico
   `encoderDown` + `encoderUp`.
 - OpenDeck's key images (144×144 JPEG) are scaled to 80×80 RGB565 and shown on
   the TFT; `setBrightness` sets the TFT backlight.
+- Action **"Deck beep"** (category "Hardware" in OpenDeck's action list): a
+  toggle key that turns the TFT's key-press beep on or off. The setting is
+  saved by OpenDeck and re-applied every time the deck connects.
 - While the plugin is attached, the TFT shows OpenDeck's keys ("Host app" in
   its status bar). Quit OpenDeck and it returns to its own pages and the
   bridge to keyboard mode.

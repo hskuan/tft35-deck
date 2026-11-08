@@ -780,6 +780,17 @@ void onLinkStatus(bool online, uint8_t flags)
   }
 }
 
+void onSound(uint8_t level)
+{
+  bool on = level != 0;
+  if (on == beepOn) return;  // the host resends it on every attach: stay quiet then
+  beepOn = on;
+  showToast(beepOn ? "Beep on" : "Beep off");
+  if (!hostMode && page == 2)
+    for (uint8_t j = 0; j < NUM_KEYS; j++)
+      if (PAGES[page].keys[j].act == Act::BeepToggle) drawKey(j, false);
+}
+
 void onBrightness(uint8_t percent)
 {
   brightness = constrain(percent, 5, 100);

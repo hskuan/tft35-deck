@@ -36,8 +36,8 @@ Quick probe of a running bridge: send `HOST_HELLO`, read `HOST_INFO` (see
 
 | File | Responsibility |
 |---|---|
-| `manifest.json` | No actions; `DeviceNamespace "td"`; `CodePath plugin.cjs` |
-| `plugin.cjs` | OpenDeck WebSocket: `registerPlugin`, `registerDevice` (id `td-<usb serial>`, 3x5 + 1 encoder, type 0), key/dial events, `setImage` → convert + cache, `setBrightness`, `refreshAll()` on `HOST_INFO` |
+| `manifest.json` | One action, "Deck beep" (`com.tft35deck.bridge.beep`, 2 states, `DisableAutomaticStates`, SVG icons in `icons/`); `DeviceNamespace "td"`; `CodePath plugin.cjs` |
+| `plugin.cjs` | OpenDeck WebSocket: `registerPlugin`, `registerDevice` (id `td-<usb serial>`, 3x5 + 1 encoder, type 0), key/dial events, `setImage` → convert + cache, `setBrightness`, `refreshAll()` on `HOST_INFO`; beep action: global setting `beep`, `setState` on all instances, `CMD_SOUND` on toggle + every refresh |
 | `lib/deck.cjs` | Bridge discovery (USB VID 303A/2E8A + handshake; never probes other ports), keepalive, events, paced writer (control frames first, newest image per key, one image at a time with drain), RLE choice |
 | `lib/image.cjs` | data URL → JPEG decode (jpeg-js) → 80x80 box filter → RGB565; `rleRuns` |
 | `lib/protocol.cjs` | JS mirror of `deck_protocol.h` |
@@ -47,6 +47,9 @@ OpenDeck facts (v2.14.2, from its source): runs `node plugin.cjs -port -pluginUU
 (Node ≥ 20) with cwd = plugin folder; device events carry `payload`; `setImage`/`setBrightness`
 fields are top-level; key images are 144x144 JPEG data URLs; `setImage` with null
 controller/position/image = clear all; encoder images are ignored (no display).
+Actions: manifest image paths have no extension (tries .svg, @2x.png, .png); 2-state
+actions auto-advance on keyUp unless `DisableAutomaticStates`; `setGlobalSettings` /
+`getGlobalSettings` take `context` = plugin UUID and are NOT echoed back to the plugin.
 Plugin log: `%LOCALAPPDATA%\opendeck\logs\plugins\com.tft35deck.bridge.sdPlugin.log`.
 
 ## Invariants / pitfalls

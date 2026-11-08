@@ -67,6 +67,10 @@ void onFrame()
     case DECK_CMD_KEY_IMAGE_RLE:
       if (len >= 6) Ui::onKeyImageRle(p[0], u16(p + 1), p + 3, len - 3);
       break;
+
+    case DECK_CMD_SOUND:
+      if (len >= 1) Ui::onSound(p[0]);
+      break;
   }
 }
 

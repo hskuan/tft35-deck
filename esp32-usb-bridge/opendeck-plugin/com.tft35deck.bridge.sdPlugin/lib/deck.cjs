@@ -180,6 +180,10 @@ class Deck extends EventEmitter {
     this.queue(encode(T.CMD_BRIGHTNESS, Buffer.from([Math.max(0, Math.min(100, percent))])));
   }
 
+  setSound(on) {
+    this.queue(encode(T.CMD_SOUND, Buffer.from([on ? 1 : 0])));
+  }
+
   clearAll() {
     this.images.clear();
     this.queue(encode(T.CMD_CLEAR_KEYS));

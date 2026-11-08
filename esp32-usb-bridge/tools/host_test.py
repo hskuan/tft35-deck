@@ -23,7 +23,7 @@ import serial
 SYNC = 0xA5
 EV_KEY, EV_DIAL, EV_DIAL_BUTTON = 0x02, 0x03, 0x04
 HOST_HELLO, HOST_INFO, HOST_BYE = 0x40, 0x41, 0x42
-CMD_BRIGHTNESS, CMD_SET_KEY, CMD_KEY_IMAGE = 0x82, 0x83, 0x85
+CMD_BRIGHTNESS, CMD_SET_KEY, CMD_KEY_IMAGE, CMD_SOUND = 0x82, 0x83, 0x85, 0x87
 
 KEY_STATES = {0: "released", 1: "pressed", 2: "cancelled"}
 DIAL_KINDS = {1: "click", 2: "long press"}

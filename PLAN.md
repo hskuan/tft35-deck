@@ -18,6 +18,9 @@ Last updated 2026-11-08. System overview: [docs/ARCHITECTURE.md](docs/ARCHITECTU
   125 MHz, see esp32-usb-bridge/CLAUDE.md); bridge power still from the RS232
   header. Revert with `BRIDGE_USART 2` / 2000000. While offline the status bar
   shows an rx byte count / UART error readout (yellow).
+- "Deck beep" OpenDeck action (toggle, saved in OpenDeck's global settings) →
+  `CMD_SOUND` (0x87) → TFT key beep on/off. (Bridge binary predates the 0x87 enum
+  in its header; it forwards 0x80–0xBF anyway.)
 
 ## Built but not yet verified on hardware
 
