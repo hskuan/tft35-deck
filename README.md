@@ -23,7 +23,7 @@ It works in two modes and switches between them automatically:
   the large square one in the middle of the back of the board.
 - **A bridge board:**
   - **Raspberry Pi Pico W**: tested and working.
-  - **ESP32-S3 SuperMini**: the firmware builds, but it is untested on hardware.
+  - **ESP32-S3 SuperMini**: tested and working.
 - 4 jumper wires (female–female for the TFT's pin headers).
 - A microSD card of 8 GB or less, formatted FAT32, to flash the TFT.
 - On the PC:

@@ -1,6 +1,6 @@
 # Status and roadmap
 
-Last updated 2026-11-08. System overview: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+Last updated 2026-11-09. System overview: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Working (verified on hardware)
 
@@ -18,17 +18,17 @@ Last updated 2026-11-08. System overview: [docs/ARCHITECTURE.md](docs/ARCHITECTU
   125 MHz, see esp32-usb-bridge/CLAUDE.md); bridge power still from the RS232
   header. Revert with `BRIDGE_USART 2` / 2000000. While offline the status bar
   shows an rx byte count / UART error readout (yellow).
+- ESP32-S3 SuperMini bridge works with the TFT (pins labelled TX/RX,
+  GPIO43/44) and OpenDeck; keyboard + CDC (COM10); uploads without buttons
+  (download mode appears as COM9). Deck registers in OpenDeck as fixed id
+  `td-tft35deck`, so profiles survive a bridge or USB port change.
 - "Deck beep" OpenDeck action (toggle, saved in OpenDeck's global settings) →
-  `CMD_SOUND` (0x87) → TFT key beep on/off. (Bridge binary predates the 0x87 enum
-  in its header; it forwards 0x80–0xBF anyway.)
+  `CMD_SOUND` (0x87) → TFT key beep on/off.
 
 ## Built but not yet verified on hardware
 
 - Latest TFT build (rounded image corners, empty-key corner fix) — needs the
   user to flash via SD.
-- ESP32-S3 SuperMini bridge: link to the TFT working on the pins labelled
-  TX/RX (GPIO43/44); enumerates as keyboard + CDC (COM10); uploads without
-  buttons (download mode appears as COM9). Not yet tried with OpenDeck.
 
 ## Known limitations
 
@@ -44,7 +44,6 @@ Last updated 2026-11-08. System overview: [docs/ARCHITECTURE.md](docs/ARCHITECTU
 2. Option: knob as native HID volume even in host mode (instant, no PC software).
 3. Faster link: next step 5M (exact on the TFT with 8x oversampling and on the Pico at 125 MHz; ESP32-S3 UART max); DMA TX on the TFT.
 4. Rename the update file to .CUR after a successful boot (like BTT's firmware).
-5. Validate and tune the SuperMini build when the board arrives.
 
 ## Rejected
 
