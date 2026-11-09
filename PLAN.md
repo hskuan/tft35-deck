@@ -26,8 +26,9 @@ Last updated 2026-11-08. System overview: [docs/ARCHITECTURE.md](docs/ARCHITECTU
 
 - Latest TFT build (rounded image corners, empty-key corner fix) — needs the
   user to flash via SD.
-- ESP32-S3 SuperMini target: builds, untested; TFT UART pins GPIO4/5 still to
-  be checked against the board's silkscreen; first flash needs the BOOT button.
+- ESP32-S3 SuperMini bridge: link to the TFT working on the pins labelled
+  TX/RX (GPIO43/44); enumerates as keyboard + CDC (COM10); uploads without
+  buttons (download mode appears as COM9). Not yet tried with OpenDeck.
 
 ## Known limitations
 

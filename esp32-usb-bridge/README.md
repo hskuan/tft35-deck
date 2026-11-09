@@ -30,11 +30,11 @@ and [docs/HARDWARE.md](../docs/HARDWARE.md).
 
 | TFT35 | ESP32-S3 SuperMini | Pico W |
 |---|---|---|
-| ESP socket TX (PA9) | GPIO4 (RX) | GP1 (RX), pin 2 |
-| ESP socket RX (PA10) | GPIO5 (TX) | GP0 (TX), pin 1 |
+| ESP socket TX (PA9) | RX (GPIO44) | GP1 (RX), pin 2 |
+| ESP socket RX (PA10) | TX (GPIO43) | GP0 (TX), pin 1 |
 | RS232 header GND | GND | GND, pin 3 |
 | RS232 header 5V | 5V | VBUS, pin 40 |
-| *debug log TX* | TX (GPIO43) | GP4, pin 6 |
+| *debug log TX* | GPIO4 | GP4, pin 6 |
 
 (The TFT firmware can use the RS232 header's TX/RX instead, with
 `BRIDGE_USART 2` in `BTT_TFT_Touch/src/config.h`, up to 3.75 Mbaud.)
@@ -50,10 +50,14 @@ pio run -e esp32s3_supermini -t upload
 pio run -e pico -t upload
 ```
 
-- **ESP32-S3 SuperMini:** the first time, hold BOOT while plugging in (or
-  press RESET with BOOT held) to enter the ROM download mode. After that the
-  deck's serial port accepts the usual 1200-baud reset, so uploads work
-  without the button.
+- **ESP32-S3 SuperMini:** a new board (stock firmware on the built-in USB
+  serial port) usually flashes directly. If not, hold BOOT while plugging in
+  to enter the ROM download mode, and replug once after the upload (esptool
+  can't reset out of a BOOT-button download mode over USB). After that the
+  upload resets the board itself: a 1200-baud touch on the deck's port
+  restarts it into download mode on a different COM port, PlatformIO waits
+  for that port, and `tools/esp32s3_exit_download.py` restarts the new
+  firmware afterwards.
 - **Pico W:** the first time, hold BOOTSEL while plugging in and copy the
   `.uf2` (or let `pio run -t upload` find the drive). After that uploads use
   the 1200-baud reset too. On the Pico the deck shows up with the core's

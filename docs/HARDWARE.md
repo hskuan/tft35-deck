@@ -68,13 +68,13 @@ No agent can flash the TFT — it needs the user and the SD card.
 
 | | ESP32-S3 SuperMini (target, `esp32s3_supermini`) | Pico W (test, `pico`) |
 |---|---|---|
-| TFT socket TX (PA9) → | GPIO4 (RX) ⚠ not yet verified on the board | GP1, pin 2 |
-| TFT socket RX (PA10) ← | GPIO5 (TX) | GP0, pin 1 |
+| TFT socket TX (PA9) → | RX (GPIO44) | GP1, pin 2 |
+| TFT socket RX (PA10) ← | TX (GPIO43) | GP0, pin 1 |
 | GND (RS232 header) | GND | GND, pin 3 (**required**) |
 | TFT 5V (RS232 header) | 5V | VBUS, pin 40 |
-| Debug log (115200) | TX GPIO43 | GP4, pin 6 |
+| Debug log (115200) | GPIO4 | GP4, pin 6 |
 | USB | single USB-C = the deck (HID + CDC) | micro-USB = the deck |
-| First flash | hold BOOT while plugging in | hold BOOTSEL while plugging in |
+| First flash | usually direct; else hold BOOT while plugging in, replug after | hold BOOTSEL while plugging in |
 | Later flashes | 1200-baud reset via the deck's CDC port | same |
 
 The user's Pico is on **COM8** (USB VID:PID 2E8A:F00B). Only one program can

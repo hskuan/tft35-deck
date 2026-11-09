@@ -12,11 +12,13 @@
 #define DEBUG_UART_TX 4  // GP4, UART1
 #define DEBUG_UART_RX 5  // GP5
 #else
-// ESP32-S3 SuperMini (GPIO1-13 are on the side headers; check your silkscreen)
-#define TFT_UART_RX   4   // GPIO4, UART1
-#define TFT_UART_TX   5   // GPIO5
-#define DEBUG_UART_TX 43  // pins labelled TX / RX, UART0
-#define DEBUG_UART_RX 44
+// ESP32-S3 SuperMini: the TFT link uses the pins labelled TX / RX (UART1
+// routed through the GPIO matrix). The ROM prints its boot log on GPIO43 at
+// reset; the TFT ignores it (not a valid frame). Debug log on GPIO4/5.
+#define TFT_UART_RX   44  // pin labelled RX
+#define TFT_UART_TX   43  // pin labelled TX
+#define DEBUG_UART_TX 4   // GPIO4, UART0
+#define DEBUG_UART_RX 5   // GPIO5
 #endif
 
 #define TFT_BAUD   3750000  // must match BRIDGE_BAUD in the TFT firmware (2000000 / 1000000 for long cables)

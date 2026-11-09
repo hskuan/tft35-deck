@@ -61,10 +61,16 @@ Plugin log: `%LOCALAPPDATA%\opendeck\logs\plugins\com.tft35deck.bridge.sdPlugin.
    clamped and the TFT sees framing/noise errors.
 3. **Forward at most one display frame per `HostLink::poll()`** — a long image burst otherwise starves TFT pings and `HOST_INFO` flaps (endless refresh loop).
 4. **Never block on the host:** `sendFrame` checks `availableForWrite()`.
-5. The debug log is a spare UART — the board's only USB port is the deck.
-6. **Plugin writes are paced** (drain per frame, keepalive between images) so `HOST_HELLO` is never > 3 s late.
-7. Plugin deploy and firmware upload both need OpenDeck quit (it holds COM8 and locks the native serialport binary).
-8. Key events: plugin maps `pressed` → keyDown, `released`/`cancelled` → keyUp; dial click → encoderDown + encoderUp.
+5. **ESP32-S3 uploads:** keep platform `espressif32@6.9.0` (core 2.0.17; 2.0.6 left the
+   board off USB after the 1200-baud reset), `use_1200bps_touch` + `wait_for_upload_port`
+   (download mode is a different COM port, 303A:1001 with the MAC as serial), and the
+   `tools/esp32s3_exit_download.py` post-upload step (clears RTC force-download boot,
+   which esptool 4.5.1 leaves set). esptool 4.8.1 fixes that itself but needs `intelhex`,
+   which PlatformIO's Python lacks.
+6. The debug log is a spare UART — the board's only USB port is the deck.
+7. **Plugin writes are paced** (drain per frame, keepalive between images) so `HOST_HELLO` is never > 3 s late.
+8. Plugin deploy and firmware upload both need OpenDeck quit (it holds the bridge port (COM8 Pico, COM10 ESP32-S3) and locks the native serialport binary).
+9. Key events: plugin maps `pressed` → keyDown, `released`/`cancelled` → keyUp; dial click → encoderDown + encoderUp.
 
 ## Recipes
 

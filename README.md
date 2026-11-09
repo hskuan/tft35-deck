@@ -51,8 +51,8 @@ ESP socket, board viewed from the component side, USB-A port on the left:
 
 | TFT35 | Pico W | ESP32-S3 SuperMini |
 |---|---|---|
-| ESP socket **TX** | GP1 (pin 2) | GPIO4 |
-| ESP socket **RX** | GP0 (pin 1) | GPIO5 |
+| ESP socket **TX** | GP1 (pin 2) | RX (GPIO44) |
+| ESP socket **RX** | GP0 (pin 1) | TX (GPIO43) |
 | RS232 header **GND** | GND (pin 3) | GND |
 | RS232 header **+5V** | VBUS (pin 40) | 5V |
 
@@ -105,7 +105,9 @@ pio run -e esp32s3_supermini -t upload    # ESP32-S3 SuperMini
 ```
 
 - **First flash, Pico W:** hold **BOOTSEL** while plugging it in.
-- **First flash, ESP32-S3:** hold **BOOT** while plugging it in.
+- **First flash, ESP32-S3:** a new board usually flashes as it is. If the
+  upload can't connect, hold **BOOT** while plugging it in, and after the
+  upload replug it once (without BOOT) to start the firmware.
 - **Later flashes:** the upload resets the board itself, but **quit OpenDeck
   first**, because OpenDeck holds the bridge's serial port while it runs.
 
