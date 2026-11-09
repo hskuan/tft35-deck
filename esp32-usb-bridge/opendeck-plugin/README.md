@@ -40,6 +40,10 @@ never touched). To pin a port, create `config.json` next to `plugin.cjs`:
 { "port": "COM8", "rleTolerance": 1 }
 ```
 
+OpenDeck stores profiles per device ID. The deck always registers as
+`td-tft35deck`, whichever bridge or USB port it uses, so its profiles stay put.
+Set `"deviceId"` in `config.json` to use a different ID.
+
 Log: `%LOCALAPPDATA%\opendeck\logs\plugins\com.tft35deck.bridge.sdPlugin.log`
 (Windows).
 

@@ -186,8 +186,14 @@ function refreshAll(reason) {
   }, 200);
 }
 
+// OpenDeck keys profiles by device id. The plugin drives one deck, so use a
+// fixed id: the bridge's "serial number" on Windows is a per-USB-port instance
+// id, and profiles would vanish when the bridge moves port or is swapped
+// (Pico <-> ESP32-S3). config.json "deviceId" overrides it.
+const DEVICE_ID = `${NAMESPACE}-${String(config.deviceId || 'tft35deck').replace(/[^A-Za-z0-9]/g, '')}`;
+
 deck.on('connected', (info) => {
-  deviceId = `${NAMESPACE}-${String(info.serial).replace(/[^A-Za-z0-9]/g, '')}`;
+  deviceId = DEVICE_ID;
   keyCount = info.rows * info.columns;
   tftReady = info.tftOnline && info.tftFramed;
   send('registerDevice', {
